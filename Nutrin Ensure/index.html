@@ -1,0 +1,309 @@
+c<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Weather App">
+    <title>Nutrin Ensure</title>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"
+    />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""/>
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""></script>
+
+    <script src="data.js"></script>
+    <script src="apiKey.js"></script>
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="index.css"/>
+  </head>
+  <body>
+    <ion-app>
+      
+      <ion-tabs id="tb-pages">
+        <!--The home screen of the application -->
+        <ion-tab tab="home">
+          <ion-header>
+            <ion-toolbar color="danger">
+                <ion-title>Nutrin Ensure</ion-title>
+            </ion-toolbar>
+        </ion-header>
+          <ion-content>
+            <ion-card>
+            
+                <ion-list>
+                <ion-item>
+                <h1>Home</h1>      
+                </ion-item>
+                <ion-item>
+                <ion-label>
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col></ion-col>
+                      <!--Application Name-->
+                <h1>Nutrin Ensure</h1>
+                <ion-col></ion-col>
+                </ion-row>
+              </ion-grid>
+                </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col></ion-col>
+                      <ion-card-content>
+                        <!--Application Logo-->
+                <img id="Logo" src="Images/Nutrin Ensure Logo.jpg">
+              </ion-card-content>
+                <ion-col></ion-col>
+                </ion-row>
+              </ion-grid>
+                </ion-item>
+              </ion-card>
+              </ion-content>
+        </ion-tab>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!--The nutrition screen of the application -->
+        <ion-tab tab="Nutrition">
+          <ion-header>
+            <ion-toolbar color="danger">
+                <ion-title>Nutrin Ensure</ion-title>
+            </ion-toolbar>
+        </ion-header>
+
+        <ion-content>
+        <ion-card>
+        
+            <ion-list>
+              <ion-item>
+                <h1>
+                  Nutrition Advice
+                </h1>
+              </ion-item>
+              <!--Input the food name here-->
+              <ion-item>
+                <ion-input label="Food Name" label-placement="floating" placeholder="Enter food name here..." type="string" id="inp-food"></ion-input>
+              </ion-item>
+              
+
+              <!--Press button to get details about the nutrients in the specified food-->
+              <ion-item>
+                <ion-button id="btn-nut">Get Food Info</ion-button>
+              </ion-item>
+
+              <!--Food name and nutriental information outputed here-->
+              <ion-list id="list-output"></ion-list>
+            </ion-list>
+              </ion-card>
+            </ion-content>
+        </ion-tab>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!--The food groups screen of the application -->
+        <ion-tab tab="Food Groups">
+          <ion-header>
+            <ion-toolbar color="danger">
+                <ion-title>Nutrin Ensure</ion-title>
+            </ion-toolbar>
+        </ion-header>
+
+        <ion-content>
+          <ion-card>
+          
+              <ion-list>
+                <ion-item>
+                  <h1>
+                  Food Groups
+                  </h1>
+                </ion-item>
+  
+                <ion-accordion-group>
+                  <!--Carbohydrates Section-->
+                  <ion-accordion value="carbohydrates">
+                    <ion-item slot="header" color="light">
+                      <ion-label>Carbohydrates</ion-label>
+                    </ion-item>
+                    <div class="ion-padding" slot="content">
+  
+                      <ion-item>
+                        <ion-label>
+                          <h1>
+                            Carbohydrates
+                          </h1>
+                        </ion-label>
+                      </ion-item>
+                      <ion-item>
+                        <ion-grid>
+                          <ion-row>
+                            <ion-col>
+                              <ion-img id="img-choice" src="Images/Carbohydrates.jpg"/>
+                            </ion-col>
+                            </ion-row>
+                            </ion-grid>
+                      </ion-item>
+                    <!--Carbohydrates Information-->
+                        <ion-item>
+                          <p>
+                            Carbohydrates are compounds made up of hydrogen, carbon and oxygen, they are divided into simple carbohydrates (like sugars) and complex carbohydrates (such as starch). Simple carbohydrates are simple sugar molecules like glucose, fructose and sucrose, they are found in food like fruit, chocolate and milk. Complex carbohydrates (or starch) are composed of a long chain of sugars joined together and are found in bread, rice, pasta and potatoes.
+                          </p>
+                        </ion-item>
+  
+                    </div>
+                  </ion-accordion>
+                  <!--Proteins Section-->
+                  <ion-accordion value="proteins">
+                    <ion-item slot="header" color="light">
+                      <ion-label>Proteins</ion-label>
+                    </ion-item>
+                    <div class="ion-padding" slot="content"><ion-item>
+                      <ion-label>
+                        <h1>
+                          Proteins
+                        </h1>
+                      </ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col>
+                        <ion-img id="img-choice" src="Images/Protein.jpg"/>
+                        </ion-col>
+                        </ion-row>
+                        </ion-grid>
+                    </ion-item>
+                    <!--Protein Information-->
+                    <ion-item>
+                     <p>
+                      Proteins are molecules made up of amino acids and are the building blocks of the body's structure. They are needed for the function and regulation of organs. There are 20 types of amino acids that can be combined to make different proteins. Proteins are found in foods such as meat, eggs, fish, nuts and milk.
+                      </p>
+                    </ion-item></div>
+                  </ion-accordion>
+                  <!--Fats Section-->
+                  <ion-accordion value="fats">
+                    <ion-item slot="header" color="light">
+                      <ion-label>Fats</ion-label>
+                    </ion-item>
+                    <div class="ion-padding" slot="content"><ion-item>
+                      <ion-label>
+                        <h1>
+                          Fats
+                        </h1>
+                      </ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col>
+                        <ion-img id="img-choice" src="Images/Fats.webp"/>
+                      </ion-col>
+                    </ion-row>
+                    </ion-grid>
+                    </ion-item>
+                    <!--Fats Information-->
+                    <ion-item>
+                     <p>
+                      Fats are a type of nutrient that gives your body energy, it also helps you absorb certain vitamins like vitamin A,D,E and K which are fat-souble vitamins. There are 2 main types of fats saturated fats and unsaturated fats, saturated fats are what raise your cholesterol level and are found in cream, butter, cheese, whole milk and ice cream. Unsaturated fats are found in vegetables.
+                      </p>
+                    </ion-item></div>
+                  </ion-accordion>
+                  <!--Fruit and Vege  tables Section-->
+                  <ion-accordion value="fruit-&-veg">
+                    <ion-item slot="header" color="light">
+                      <ion-label>Fruit and Vegetables</ion-label>
+                    </ion-item>
+                    <div class="ion-padding" slot="content"><ion-item>
+                      <ion-label>
+                        <h1>
+                          Fruit and Vegetables
+                        </h1>
+                      </ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col>
+                        <ion-img id="img-choice" src="Images/Fruit and Veg.jpg"/>
+                      </ion-col>
+                    </ion-row>
+                    </ion-grid>
+                    </ion-item>
+                    <!--Fruit and Vegtables Information-->
+                    <ion-item>
+                     <p>
+                      Fruit and vegetables are rich in antioxidabts which are compounds that scavenge and neutralise free radicals. They also contain folic acid which decreases the amount of homocysteine in the blood which is substance that is a risk factor for coronary heart disease.
+                      </p>
+                    </ion-item></div>
+                  </ion-accordion>
+                  <!--Dairy Products Section-->
+                  <ion-accordion value="dairy">
+                    <ion-item slot="header" color="light">
+                      <ion-label>Dairy Products</ion-label>
+                    </ion-item>
+                    <div class="ion-padding" slot="content"><ion-item>
+                      <ion-label>
+                        <h1>
+                          Dairy Products
+                        </h1>
+                      </ion-label>
+                    </ion-item>
+                    <!--Dairy Products Image-->
+                    <ion-item>
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col>
+                        <ion-img id="img-choice" src="Images/Dairy Products.jfif"/>
+                        </ion-col>
+                        </ion-row>
+                        </ion-grid>
+                    </ion-item>
+                    <!--Dairy Products Information-->
+                    <ion-item>
+                     <p>
+                      Dairy products are great source of protein, calcium, vitamin D and other healthy nutrients. These nutrients are involved with bone health, cardiovascular disease and other conditions. The calcium, phosphorus and vitamin D found in dairy products help with bone building and the high amount of potassium helps lower blood pressure.
+                      </p>
+                    </ion-item></div>
+                  </ion-accordion>
+                </ion-accordion-group>
+                </ion-list>
+                <ion-label id="lbl-food-groups"></ion-label>
+                </ion-card>
+              </ion-content>
+        </ion-tab>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!--The navigational tab bar of the application-->
+        <ion-tab-bar slot="bottom" color="primary">
+          <!--Button for home screen-->
+          <ion-tab-button tab="home">
+            <ion-icon name="home-outline"></ion-icon>
+            <ion-label><h2>Home</h2></ion-label>
+          </ion-tab-button>
+          <!--Button for nutrition screen-->
+          <ion-tab-button tab="Nutrition">
+            <ion-label><h2>Nutrition</h2></ion-label>
+          </ion-tab-button>
+          <!--Button for food groups screen-->
+          <ion-tab-button tab="Food Groups">
+            <ion-label><h2>Food Groups</h2></ion-label>
+          </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
+    </ion-app>    
+    
+  </body>
+</html>
